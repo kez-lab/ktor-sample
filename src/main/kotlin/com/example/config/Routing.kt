@@ -8,7 +8,9 @@ import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import java.time.LocalDateTime
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 
 fun Application.configureRouting() {
@@ -30,7 +32,7 @@ fun Application.configureRouting() {
                     customerName = "곽의진",
                     price = selectedMenu.price,
                     status = CafeOrderStatus.READY,
-                    orderedAt = LocalDateTime.now(),
+                    orderedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
                     id = 1,
                 )
                 call.respond(order)
@@ -43,7 +45,7 @@ fun Application.configureRouting() {
                     customerName = "곽의진",
                     price = 2500,
                     status = CafeOrderStatus.READY,
-                    orderedAt = LocalDateTime.now(),
+                    orderedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
                     id = 1,
                 )
                 call.respond(order)
